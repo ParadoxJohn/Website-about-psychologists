@@ -1,0 +1,12 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(221, 220, 220);
+    padding: 15px 60px;
+}
+.end{
+    padding-right: 100px;
+}
+.nameEnd{
+    padding-left: 100px;
+}

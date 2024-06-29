@@ -1,0 +1,88 @@
+a{
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+}
+.logo{
+    color: #42B2FC;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 58px;
+    text-transform: uppercase;
+    margin-right: 700px;
+    text-decoration-line: underline;
+}
+.header{
+    position: relative;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.nav{
+    width: 200px;
+    justify-content: space-between;
+    margin-left: 20px;
+    padding-right: 30px;
+}
+.navAc{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.MBut {
+    display: inline-block;
+    padding: 10px 10px;
+    border: 1px solid #42B2FC;
+    border-radius: 6px;
+    background-color: #42B2FC;
+    font-size: 16px;
+    line-height: 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.MBut:hover {
+    background-color: #fff;
+    color: #45a7f5;
+}
+
+.MBut:active {
+    transform: scale(0.95);
+}
+
+.RightNav{
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+}
+.link{
+    padding-right: 50px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Медіа-запит для екранів шириною до 768px (мобільні пристрої) */
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo {
+      margin-right: 0; /* Зменшимо margin-right на мобільних пристроях */
+      margin-bottom: 10px; /* Додаємо margin-bottom для відділення від інших елементів */
+    }
+  
+    .RightNav {
+      margin-right: 0; /* Зменшимо margin-right на мобільних пристроях */
+      margin-top: 10px; /* Додаємо margin-top для відділення від інших елементів */
+    }
+  
+    .nav,
+    .navAc,
+    .MBut {
+      margin-left: 0; /* Зменшимо margin-left на мобільних пристроях */
+      padding: 10px; /* Додаємо padding для більшого тач-пад відділення між елементами */
+      text-align: center; /* Центруємо текст */
+      width: 100%; /* Займає весь контейнер */
+    }
+  }
