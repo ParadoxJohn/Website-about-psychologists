@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "65778f9891bdd7c9981ea9c1"
+  },
+  "fullName": "ewqe",
+  "email": "dwad@gmail.com",
+  "passwordHash": "$2b$10$Nibep.hyOInoQSdtHwfAY.05N4mhcTRVSIdViRrR36zc92RoMhnO.",
+  "createdAt": {
+    "$date": "2023-12-11T22:39:20.104Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-11T22:39:20.104Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6578dd804d4b7538abea567c"
+  },
+  "fullName": "Микола Тарасенко",
+  "email": "Tarasenko@gmail.com",
+  "passwordHash": "$2b$10$p5.3.U.8H2zbvgawNCc/VOVVCejzX1XrIDlBSkpPjLAMm9BDdGlEC",
+  "createdAt": {
+    "$date": "2023-12-12T22:24:00.774Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-12T22:24:00.774Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "657f278f278b553f5f992609"
+  },
+  "fullName": "Тестовий тест",
+  "email": "Test@gmail.com",
+  "passwordHash": "$2b$10$P3Mg7rawaB2.LJyJxFOS0.4Al2DH0pAu6dvwMRY3.CPPtDZXb.9QK",
+  "createdAt": {
+    "$date": "2023-12-17T16:53:35.495Z"
+  },
+  "updatedAt": {
+    "$date": "2023-12-17T16:53:35.495Z"
+  },
+  "__v": 0
+}]

@@ -14,7 +14,7 @@ app.use(cors({
   credentials: true,
 }));
 
-mongoose.connect('mongodb://localhost:27017/your-database-name', {
+mongoose.connect('mongodb+srv://ivan:ivanIvanyk987@cluster0.urmz3co.mongodb.net/your-database-name?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
