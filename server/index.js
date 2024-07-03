@@ -48,6 +48,7 @@ app.post('/posts', checkAuth, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, PostController.update);
 
-app.listen(8000, () => {
-  console.log(`Server is running on port 8000.`);
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
