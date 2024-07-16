@@ -72,7 +72,7 @@ const AddPsychologist = () => {
             <button variant="contained" color="error" onClick={onClickRemoveImage}>
               Видалити
             </button>
-            <img src={`http://localhost:8000${imageUrl}`} alt="Uploaded" />
+            <img src={`https://website-about-psychologists.onrender.com${imageUrl}`} alt="Uploaded" />
           </>
         )}
       </div>
@@ -105,8 +105,6 @@ const AddPsychologist = () => {
       <button type="button" onClick={handleAddPsychologist}>
         Додати психолога
       </button>
-
-      {/* Додана кнопка "Перейти до списку" */}
       <button onClick={() => navigate('/List')}>Перейти до списку</button>
     </div>
   );

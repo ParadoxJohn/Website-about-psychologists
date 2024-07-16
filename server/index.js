@@ -9,8 +9,19 @@ import fs from 'fs';
 const app = express();
 
 app.use(express.json());
+const allowedOrigins = [
+  'https://legendary-peony-d3886e.netlify.app',
+  'http://localhost:3000'
+];
+
 app.use(cors({
-  origin: 'https://668575e72b41ec4230db47a6--legendary-peony-d3886e.netlify.app',
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
 

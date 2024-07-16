@@ -21,7 +21,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:8000/auth/register', {
+      const response = await fetch('https://website-about-psychologists.onrender.com/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,10 +34,9 @@ const Register = () => {
       });
 
       if (response.ok) {
-        // Реєстрація успішна, можна перенаправити користувача на іншу сторінку (наприклад, логін)
         navigate('/Login');
       } else {
-        // Обробка помилок реєстрації
+
         setError('Помилка реєстрації');
       }
     } catch (error) {

@@ -1,37 +1,53 @@
-a{
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
+html, body {
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
-.logo{
+
+a {
+    text-decoration: none;
+}
+
+.header {
+    position: relative;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1.4px solid rgb(210, 210, 210);
+}
+
+.logo {
     color: #42B2FC;
     font-weight: 700;
     font-size: 25px;
     line-height: 58px;
     text-transform: uppercase;
-    margin-right: 700px;
     text-decoration-line: underline;
+    margin-left: 5%;
 }
-.header{
-    position: relative;
-    min-height: 80px;
+
+.RightNav {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    margin-right: 4%;
 }
-.nav{
-    width: 200px;
-    justify-content: space-between;
-    margin-left: 20px;
-    padding-right: 30px;
+
+.nav, .navAc {
+    margin-right: 20px;
 }
-.navAc{
+
+.link {
     display: flex;
     align-items: center;
-    justify-content: space-around;
 }
+
 .MBut {
     display: inline-block;
-    padding: 10px 10px;
+    padding: 10px 15px;
     border: 1px solid #42B2FC;
     border-radius: 6px;
     background-color: #42B2FC;
@@ -40,6 +56,8 @@ a{
     color: #fff;
     text-decoration: none;
     transition: color 0.3s, background-color 0.3s;
+    white-space: nowrap;
+    margin-right: 20px;
 }
 
 .MBut:hover {
@@ -51,38 +69,112 @@ a{
     transform: scale(0.95);
 }
 
-.RightNav{
-    margin-right: 50px;
-    display: flex;
-    align-items: center;
-}
-.link{
-    padding-right: 50px;
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-    /* Медіа-запит для екранів шириною до 768px (мобільні пристрої) */
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #42B2FC;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
     .header {
-      flex-direction: column;
-      align-items: flex-start;
+        flex-wrap: nowrap;
+        justify-content: space-between;
     }
-  
+
     .logo {
-      margin-right: 0; /* Зменшимо margin-right на мобільних пристроях */
-      margin-bottom: 10px; /* Додаємо margin-bottom для відділення від інших елементів */
+        width: auto;
+        text-align: left;
+        margin-bottom: 0;
+        font-size: 22px;
+        line-height: 40px;
     }
-  
+
+    .hamburger {
+        display: flex;
+        z-index: 2;
+    }
+
     .RightNav {
-      margin-right: 0; /* Зменшимо margin-right на мобільних пристроях */
-      margin-top: 10px; /* Додаємо margin-top для відділення від інших елементів */
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px; 
+        height: 24vh;
+        background-color: #fff;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 10px; 
+        transition: right 0.3s ease;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     }
-  
-    .nav,
-    .navAc,
+    
+    .RightNav.open {
+        right: 0;
+    }
+    
+    .RightNav > div {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0; 
+        border-bottom: 1px solid #e0e0e0; 
+    }
+    
+    .RightNav > div:last-child {
+        border-bottom: none; 
+    }
+    
+    .nav, .navAc, .MBut {
+        margin: 0;
+        font-size: 16px;
+    }
+    
     .MBut {
-      margin-left: 0; /* Зменшимо margin-left на мобільних пристроях */
-      padding: 10px; /* Додаємо padding для більшого тач-пад відділення між елементами */
-      text-align: center; /* Центруємо текст */
-      width: 100%; /* Займає весь контейнер */
+        background-color: transparent; 
+        border: none;
+        color: #42B2FC;
+        padding: 15px 0; 
     }
-  }
+    
+    .MBut:hover {
+        background-color: #f0f0f0; 
+    }
+    
+    
+    .navAc {
+        justify-content: center;
+    }
+    
+    .lock{
+        display: none;
+    }
+
+    .navAc {
+        margin-right: 5px;
+    }
+
+    .hamburger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+}
+
+@media (max-width: 480px) {
+    .RightNav {
+        width: 60%;
+    }
+}

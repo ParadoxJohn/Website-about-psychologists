@@ -39,12 +39,10 @@ const Home = () => {
                             Ми вам допоможем знайти психолога та зв'язатись з ним
                         </h3>
                         <div className="SecB">
-                    <Link to="/List"> Вибрати психолога</Link>
-                </div>
+                            <Link to="/List"> Вибрати психолога</Link>
+                        </div>
                     </div>
-                    <div className="imgPsh">
-                        <img src={General} alt="ds" />
-                    </div>
+                        <img className="imgPsh" src={General} alt="ds" />
                 </div>
                 <div className="Helping animate-on-scroll">
                     <h3 className="helps">

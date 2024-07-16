@@ -9,7 +9,7 @@ const PsychologistList = () => {
   useEffect(() => {
     const fetchPsychologists = async () => {
       try {
-        const response = await fetch('http://localhost:8000/posts');
+        const response = await fetch('https://website-about-psychologists.onrender.com/posts');
         if (!response.ok) {
           throw new Error('Failed to fetch psychologists');
         }
@@ -33,7 +33,7 @@ const PsychologistList = () => {
     try {
       const token = localStorage.getItem('token');
 
-      const response = await fetch(`http://localhost:8000/posts/${postId}`, {
+      const response = await fetch(`https://website-about-psychologists.onrender.com/posts/${postId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

@@ -2,43 +2,7 @@ a{
     text-decoration: none;
     font-family: 'Inter', sans-serif;
 }
-.logo{
-    color: #42B2FC;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 58px;
-    text-transform: uppercase;
-    margin-right: 700px;
-    text-decoration-line: underline;
-}
-.header{
-    position: relative;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content:  flex-end;
-}
-.nav{
-    width: 200xp;
-    justify-content: space-between;
-    margin-left: 40px;
-}
-.navAc{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-.Mbut{
-    justify-content:  flex-end;
-}
-.RightNav{
-    margin-right: 50px;
-    display: flex;
-    align-items: center;
-}
-.link{
-    padding-right: 50px;
-}
+
 h3{
     font-family: 'Inter', sans-serif;
     max-width: 640px;
@@ -72,13 +36,14 @@ button{
 }
 .SecB {
     margin-bottom: 10px;
+    margin-right: 10px;
     font-size: 20px;
     background-color: #45a7f5;
     color: #fff;
     border-radius: 8px;
     text-decoration: none;
     transition: color 0.3s, background-color 0.3s;
-    min-width: 356px;
+    width: 300px;
     text-align: center;
     line-height: 50px;
     cursor: pointer; 
@@ -195,4 +160,50 @@ footer{
 }
 .nameEnd{
     padding-left: 100px;
+}
+
+@media (max-width: 768px){
+    .SecB{
+        width: 200px;
+    }
+    h3{
+        font-size: 40px;
+        line-height: 42px;
+        font-weight: 400;
+    }
+    .startSec{
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    h3{
+        font-size: 20px;
+        line-height: 22px;
+        font-weight: 200;
+        width: 100%;
+        text-align: center;
+
+    }
+    .MainSect{
+        flex-direction: column;
+    }
+    .imgPsh{
+        width: 200px;
+        height: 150px;
+    }
+    .startSec{
+        width: 80%;
+        padding-left: 0;
+    }
+    .MainSect{
+        padding: 0;
+    }
+    .SecB{
+        margin: 20px auto;
+        font-size: 18px;
+        line-height: 40px;
+        color: blue
+    }
+    
 }

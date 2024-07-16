@@ -12,7 +12,7 @@ const PsychologistCard = ({ psychologist, currentUserId, onDelete }) => {
 
   return (
     <div className="psychologist-card">
-      <img src={`http://localhost:8000${photoUrl}`} alt={`Фотографія ${fullName}`} />
+      <img src={`https://website-about-psychologists.onrender.com${photoUrl}`} alt={`Фотографія ${fullName}`} />
       <h3>{fullName}</h3>
       <p>Контакти: {contacts}</p>
       <p>{description}</p>
