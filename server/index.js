@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 const allowedOrigins = [
-  'https://legendary-peony-d3886e.netlify.app',
+  'https://6696e9336a89c941c904c0dc--legendary-peony-d3886e.netlify.app',
   'http://localhost:3000'
 ];
 
