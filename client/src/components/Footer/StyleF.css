@@ -4,9 +4,32 @@ footer {
     background-color: rgb(221, 220, 220);
     padding: 15px 60px;
 }
-.end{
+
+.end {
     padding-right: 100px;
 }
-.nameEnd{
+
+.nameEnd {
     padding-left: 100px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 0px 20px;
+        text-align: center;
+    }
+
+    .end, .nameEnd {
+        padding: 5px 0;
+    }
+
+    .end {
+        font-size: 14px;
+    }
+
+    .nameEnd {
+        margin-bottom: 10px;
+    }
 }

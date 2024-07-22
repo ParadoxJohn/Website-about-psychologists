@@ -1,58 +1,60 @@
 .register-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 77vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 77vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+form {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .register-container {
+    padding: 10px;
+    justify-content: flex-start;
   }
-  
+
   form {
-    width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    width: 90%;
+    padding: 15px;
   }
-  
+
   h2 {
-    text-align: center;
-    color: #333;
-  }
-  
-  .form-group {
+    font-size: 20px;
     margin-bottom: 15px;
   }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: #333;
+
+  .form-group {
+    margin-bottom: 10px;
   }
-  
-  input {
-    width: 100%;
+
+  input, button {
     padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    font-size: 14px;
   }
-  
-  button {
-    width: 100%;
-    padding: 10px;
+}
+
+@media (max-width: 480px) {
+  form {
+    width: 80%;
+  }
+
+  h2 {
     font-size: 18px;
-    color: #fff;
-    background-color: #45a7f5;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
   }
-  
-  button:hover {
-    background-color: #1c87e7;
-    color: #fff;
+
+  input, button {
+    font-size: 13px;
   }
-  
+}
