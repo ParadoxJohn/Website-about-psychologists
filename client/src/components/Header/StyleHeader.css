@@ -11,13 +11,15 @@ a {
 }
 
 .header {
-    position: relative;
+    position: relative; 
     min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
     border-bottom: 1.4px solid rgb(210, 210, 210);
+    background-color: #fff; 
+    z-index: 1000; 
 }
 
 .logo {
@@ -53,16 +55,25 @@ a {
     background-color: #42B2FC;
     font-size: 16px;
     line-height: 20px;
-    color: #fff;
     text-decoration: none;
     transition: color 0.3s, background-color 0.3s;
     white-space: nowrap;
     margin-right: 20px;
 }
 
+.MBut a {
+    color: #fff; 
+    text-decoration: none;
+}
+
+
 .MBut:hover {
     background-color: #fff;
     color: #45a7f5;
+    a{
+        background-color: #fff;
+        color: #45a7f5;
+    }
 }
 
 .MBut:active {
@@ -81,6 +92,19 @@ a {
     background-color: #42B2FC;
     margin-bottom: 5px;
     transition: all 0.3s ease;
+}
+.link a:visited { 
+    color: #0084de; 
+}
+.nav a:visited { 
+    color: #0084de; 
+}
+
+.link a { 
+    color: #0084de; 
+}
+.nav a { 
+    color: #0084de; 
 }
 
 @media (max-width: 768px) {
@@ -103,11 +127,11 @@ a {
     }
 
     .RightNav {
-        position: fixed;
-        top: 0;
+        position: absolute;
+        top: 80px; 
         right: -100%;
         width: 250px; 
-        height: 24vh;
+        height: auto;
         background-color: #fff;
         flex-direction: column;
         justify-content: flex-start;
@@ -115,44 +139,43 @@ a {
         transition: right 0.3s ease;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
     }
-    
+
     .RightNav.open {
         right: 0;
     }
-    
+
     .RightNav > div {
         width: 100%;
         text-align: center;
         padding: 15px 0; 
         border-bottom: 1px solid #e0e0e0; 
     }
-    
+
     .RightNav > div:last-child {
         border-bottom: none; 
     }
-    
+
     .nav, .navAc, .MBut {
         margin: 0;
         font-size: 16px;
     }
-    
+
     .MBut {
         background-color: transparent; 
         border: none;
         color: #42B2FC;
         padding: 15px 0; 
     }
-    
+
     .MBut:hover {
         background-color: #f0f0f0; 
     }
-    
-    
+
     .navAc {
         justify-content: center;
     }
-    
-    .lock{
+
+    .lock {
         display: none;
     }
 

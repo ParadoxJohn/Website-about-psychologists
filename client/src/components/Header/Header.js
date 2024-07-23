@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './StyleHeader.css'
+import './StyleHeader.css';
 import lockImage from './img/lock.png';
 
 class Header extends Component {
@@ -26,9 +26,9 @@ class Header extends Component {
                     <span></span>
                 </div>
                 <div className={`RightNav ${this.state.menuOpen ? 'open' : ''}`}>
-                <div className="nav">
-                    <Link to="/auth/register">Реєстрація</Link> 
-                </div>
+                    <div className="nav">
+                        <Link to="/auth/register">Реєстрація</Link> 
+                    </div>
                     <div className="navAc link">
                         <img className='lock' src={lockImage} alt="Lock" />
                         <Link to="/Login">Вхід</Link>
