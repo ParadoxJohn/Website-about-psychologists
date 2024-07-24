@@ -52,32 +52,43 @@ a {
     padding: 10px 15px;
     border: 1px solid #42B2FC;
     border-radius: 6px;
-    background-color: #42B2FC;
+    background-color: #42B2FC; /* Blue background */
     font-size: 16px;
     line-height: 20px;
     text-decoration: none;
-    transition: color 0.3s, background-color 0.3s;
     white-space: nowrap;
     margin-right: 20px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .MBut a {
-    color: #fff; 
+    color: #fff; /* White text */
     text-decoration: none;
 }
 
-
-.MBut:hover {
-    background-color: #fff;
-    color: #45a7f5;
-    a{
-        background-color: #fff;
-        color: #45a7f5;
+@keyframes tempColorChange {
+    0%, 100% {
+        background-color: #42B2FC; /* Blue */
+        color: #fff; /* White */
+    }
+    50% {
+        background-color: #fff; /* White */
+        color: #42B2FC; /* Blue */
     }
 }
 
 .MBut:active {
-    transform: scale(0.95);
+    animation: tempColorChange 0.3s;
+}
+
+.MBut:active a {
+    animation: tempColorChange 0.3s;
+}
+
+/* Remove hover effects */
+.MBut:hover, .MBut:hover a {
+    background-color: #42B2FC;
+    color: #fff;
 }
 
 .hamburger {
@@ -107,6 +118,7 @@ a {
     color: #0084de; 
 }
 
+
 @media (max-width: 768px) {
     .header {
         flex-wrap: nowrap;
@@ -128,10 +140,10 @@ a {
 
     .RightNav {
         position: absolute;
-        top: 80px; 
         right: -100%;
         width: 250px; 
         height: auto;
+        top: 0px;
         background-color: #fff;
         flex-direction: column;
         justify-content: flex-start;
@@ -161,14 +173,20 @@ a {
     }
 
     .MBut {
-        background-color: transparent; 
-        border: none;
-        color: #42B2FC;
-        padding: 15px 0; 
+        background-color: #fff; 
+        border: 1px solid #fff;
+        padding: 15px 0;
     }
 
-    .MBut:hover {
-        background-color: #f0f0f0; 
+    .MBut a {
+        color: #0084de;
+    }
+
+    .MBut:hover, .MBut:active,
+    .MBut:hover a, .MBut:active a {
+        background-color: #fff;
+        color: #0084de;
+        animation: none;
     }
 
     .navAc {
