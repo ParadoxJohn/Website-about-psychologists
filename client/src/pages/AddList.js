@@ -53,7 +53,7 @@ const AddPsychologist = () => {
       alert('Помилка при додаванні психолога: ' + (error.response?.data?.message || error.message));
     }
   };
-
+  
   return (
     <div className="add-psychologist-container">
       <h2>Додати психолога</h2>

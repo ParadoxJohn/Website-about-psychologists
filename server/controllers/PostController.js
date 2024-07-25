@@ -2,9 +2,12 @@ import PostModel from '../models/Post.js';
 
 export const getAll = async (req, res) => {
   try {
-    const posts = await PostModel.find().populate('user').exec();
+    const posts = await PostModel.find().populate('user', '-passwordHash').exec();
 
-    res.json(posts);
+    res.json(posts.map(post => ({
+      ...post._doc,
+      photoBase64: post.photoBase64
+    })));
   } catch (err) {
     console.log(err);
     res.status(500).json({

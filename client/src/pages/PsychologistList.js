@@ -58,11 +58,11 @@ const PsychologistList = () => {
       <div className="psychologist-list">
         {psychologistsData.map(psychologist => (
           <PsychologistCard
-            key={psychologist._id}
-            psychologist={psychologist}
-            currentUserId={currentUserId}
-            onDelete={handleDelete}
-          />
+          key={psychologist._id}
+          psychologist={psychologist}
+          currentUserId={currentUserId}
+          onDelete={handleDelete}
+        />
         ))}
       </div>
     </div>
