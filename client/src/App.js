@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
@@ -10,10 +10,17 @@ import AddPsychologist from './pages/AddList.js';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-     // eslint-disable-next-line no-unused-vars
   const [token, setToken] = useState('');
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const handleLogin = (newToken) => {
+    localStorage.setItem('token', newToken);
     setToken(newToken);
     setIsAuthenticated(true);
   };

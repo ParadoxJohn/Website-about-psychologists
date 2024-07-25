@@ -10,7 +10,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch('https://website-about-psychologists.onrender.com/auth/login', {
         method: 'POST',
@@ -22,13 +22,14 @@ const Login = ({ onLogin }) => {
           password,
         }),
       });
-
+  
       if (!response.ok) {
         setError('Неправильний логін або пароль');
         return;
       }
-
+  
       const data = await response.json();
+      localStorage.setItem('token', data.token); // Зберігаємо токен
       onLogin(data.token);
       navigate('/AddPsychologist'); 
     } catch (error) {

@@ -31,6 +31,9 @@ const AddPsychologist = () => {
   const handleAddPsychologist = async () => {
     try {
       const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Токен відсутній');
+      }
   
       const response = await axios.post('/posts', {
         photoBase64: imageBase64,
@@ -39,7 +42,6 @@ const AddPsychologist = () => {
         description,
       }, {
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
       });
