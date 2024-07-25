@@ -1,19 +1,16 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import { checkAuth, handleValidationErrors } from './utils/index.js';
 import { UserController, PostController } from './controllers/index.js';
-import cors from 'cors';
 
 const app = express();
 
-app.use(express.json());
-
-app.use(express.json());
 const allowedOrigins = [
-  'https://669f9c606baeea1c42bf7065--legendary-peony-d3886e.netlify.app',
   'https://legendary-peony-d3886e.netlify.app',
   'http://localhost:3000'
 ];
+
 app.use(cors({
   origin: (origin, callback) => {
     if (allowedOrigins.includes(origin) || !origin) {
@@ -24,6 +21,8 @@ app.use(cors({
   },
   credentials: true,
 }));
+
+app.use(express.json());
 
 mongoose.connect('mongodb+srv://ivan:ivanIvanyk987@cluster0.urmz3co.mongodb.net/your-database-name?retryWrites=true&w=majority', {});
 

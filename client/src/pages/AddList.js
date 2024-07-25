@@ -31,7 +31,7 @@ const AddPsychologist = () => {
   const handleAddPsychologist = async () => {
     try {
       const token = localStorage.getItem('token');
-
+  
       const response = await axios.post('/posts', {
         photoBase64: imageBase64,
         name,
@@ -43,7 +43,7 @@ const AddPsychologist = () => {
           'Authorization': `Bearer ${token}`,
         },
       });
-
+  
       console.log('Psychologist added successfully', response.data);
       navigate('/List');
     } catch (error) {
