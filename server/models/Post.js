@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const PostSchema = new mongoose.Schema(
   {
-    photoUrl: {
+    photoBase64: {
       type: String,
       required: true,
     },

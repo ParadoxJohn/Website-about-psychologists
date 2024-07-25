@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axios.js';
 import './Add.css';
@@ -7,33 +7,25 @@ const AddPsychologist = () => {
   const [name, setName] = useState('');
   const [contacts, setContacts] = useState('');
   const [description, setDescription] = useState('');
+  const [imageBase64, setImageBase64] = useState('');
   const navigate = useNavigate();
-  const inputFileRef = React.useRef(null);
-  const [imageUrl, setImageURL] = React.useState('');
+  const inputFileRef = useRef(null);
 
-  const handlePhotoChange = async (event) => {
-    try {
-      const formData = new FormData();
-      const file = event.target.files[0];
-      formData.append('image', file);
-
-      const token = localStorage.getItem('token');
-      const { data } = await axios.post('/upload', formData, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      setImageURL(data.url);
-    } catch (err) {
-      console.warn(err);
-      alert('Помилка при загрузці файла');
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    
+    reader.onloadend = () => {
+      setImageBase64(reader.result);
+    };
+    
+    if (file) {
+      reader.readAsDataURL(file);
     }
   };
 
   const onClickRemoveImage = () => {
-    setImageURL('');
+    setImageBase64('');
   };
 
   const handleAddPsychologist = async () => {
@@ -41,7 +33,7 @@ const AddPsychologist = () => {
       const token = localStorage.getItem('token');
 
       const response = await axios.post('/posts', {
-        photo: imageUrl,
+        photoBase64: imageBase64,
         name,
         contacts,
         description,
@@ -53,10 +45,10 @@ const AddPsychologist = () => {
       });
 
       console.log('Psychologist added successfully', response.data);
-      // Перейти на сторінку List після успішного додавання
       navigate('/List');
     } catch (error) {
-      console.error('Add psychologist error:', error.message);
+      console.error('Add psychologist error:', error.response?.data?.message || error.message);
+      alert('Помилка при додаванні психолога: ' + (error.response?.data?.message || error.message));
     }
   };
 
@@ -67,12 +59,12 @@ const AddPsychologist = () => {
         <label>Фотографія:</label>
         <input ref={inputFileRef} type="file" accept="image/*" onChange={handlePhotoChange} />
 
-        {imageUrl && (
+        {imageBase64 && (
           <>
             <button variant="contained" color="error" onClick={onClickRemoveImage}>
               Видалити
             </button>
-            <img src={`https://website-about-psychologists.onrender.com${imageUrl}`} alt="Uploaded" />
+            <img className="newImg" src={imageBase64} alt="Uploaded" />
           </>
         )}
       </div>

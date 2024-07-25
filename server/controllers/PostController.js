@@ -52,19 +52,21 @@ export const remove = async (req, res) => {
   }
 };
 
-
 export const create = async (req, res) => {
   try {
-    const doc = new PostModel({
-      photoUrl: req.body.photoUrl,
-      fullName: req.body.name,
-      contacts: req.body.contacts,
-      description: req.body.description,
+    const { photoBase64, name, contacts, description } = req.body;
+
+    const post = new PostModel({
+      photoBase64,
+      fullName: name,
+      contacts,
+      description,
       user: req.userId,
     });
 
-    const post = await doc.save();
-    res.json({ ...post._doc, photoUrl: req.body.photoUrl });
+    const savedPost = await post.save();
+
+    res.json(savedPost);
   } catch (err) {
     console.log(err);
     res.status(500).json({
