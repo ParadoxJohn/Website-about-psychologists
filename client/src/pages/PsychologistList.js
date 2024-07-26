@@ -51,6 +51,14 @@ const PsychologistList = () => {
       console.error('Delete psychologist error:', error);
     }
   };
+  
+  const handleUpdate = (updatedPsychologist) => {
+    setPsychologistsData(prevData =>
+      prevData.map(psych =>
+        psych._id === updatedPsychologist._id ? updatedPsychologist : psych
+      )
+    );
+  };
 
   return (
     <div>
@@ -58,15 +66,15 @@ const PsychologistList = () => {
       <div className="psychologist-list">
         {psychologistsData.map(psychologist => (
           <PsychologistCard
-          key={psychologist._id}
-          psychologist={psychologist}
-          currentUserId={currentUserId}
-          onDelete={handleDelete}
-        />
+            key={psychologist._id}
+            psychologist={psychologist}
+            currentUserId={currentUserId}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         ))}
       </div>
     </div>
   );
 };
-
 export default PsychologistList;

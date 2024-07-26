@@ -1,24 +1,68 @@
-import React from 'react';
-import './List.css';
+import React, { useState } from 'react';
+import axios from '../axios';
 
-const PsychologistCard = ({ psychologist, currentUserId, onDelete }) => {
-  const { _id, fullName, contacts, description, user, photoUrl } = psychologist;
+const PsychologistCard = ({ psychologist, currentUserId, onDelete, onUpdate }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedData, setEditedData] = useState({
+    fullName: psychologist.fullName,
+    contacts: psychologist.contacts,
+    description: psychologist.description,
+  });
 
-  const isCurrentUserOwner = user._id === currentUserId;
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
 
-  const handleDeleteClick = () => {
-    onDelete(_id);
+  const handleSave = async () => {
+    try {
+      const response = await axios.patch(`/posts/${psychologist._id}`, editedData);
+      onUpdate(response.data);
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Update psychologist error:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setEditedData({ ...editedData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="psychologist-card">
-      <img src={psychologist.photoBase64} alt={`Фотографія ${fullName}`} />
-      <h3>{fullName}</h3>
-      <p>Контакти: {contacts}</p>
-      <p>{description}</p>
+      <img src={psychologist.photoBase64} alt={`Фотографія ${psychologist.fullName}`} />
+      
+      {isEditing ? (
+        <>
+          <input
+            name="fullName"
+            value={editedData.fullName}
+            onChange={handleInputChange}
+          />
+          <input
+            name="contacts"
+            value={editedData.contacts}
+            onChange={handleInputChange}
+          />
+          <textarea
+            name="description"
+            value={editedData.description}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleSave}>Зберегти</button>
+        </>
+      ) : (
+        <>
+          <h3>{psychologist.fullName}</h3>
+          <p>Контакти: {psychologist.contacts}</p>
+          <p>{psychologist.description}</p>
+        </>
+      )}
 
-      {isCurrentUserOwner && (
-        <button onClick={handleDeleteClick}>Видалити</button>
+      {currentUserId === psychologist.user && (
+        <>
+          <button onClick={handleEdit}>Редагувати</button>
+          <button onClick={() => onDelete(psychologist._id)}>Видалити</button>
+        </>
       )}
     </div>
   );

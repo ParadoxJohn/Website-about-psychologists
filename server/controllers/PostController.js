@@ -37,20 +37,30 @@ export const remove = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    const removedPost = await PostModel.findByIdAndRemove(postId);
-    if (!removedPost) {
+    const post = await PostModel.findById(postId);
+
+    if (!post) {
       return res.status(404).json({
-        message: 'Запис не знайдено',
+        message: 'Пост не знайдено',
       });
     }
 
+    if (post.user.toString() !== req.userId) {
+      return res.status(403).json({
+        message: 'У вас немає прав для видалення цього поста',
+      });
+    }
+
+    await PostModel.findByIdAndDelete(postId);
+
     res.json({
       success: true,
+      message: 'Пост успішно видалено',
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: 'не вдалося видалити запис',
+      message: 'Не вдалося видалити пост',
     });
   }
 };
@@ -81,22 +91,38 @@ export const create = async (req, res) => {
 export const update = async (req, res) => {
   try {
     const postId = req.params.id;
+    const { fullName, contacts, description, photoBase64 } = req.body;
 
-    await PostModel.findByIdAndUpdate(postId, {
-      fullName: req.body.fullName,
-      Contact: req.body.Contact,
-      Description: req.body.Description,
-      imageUrl: req.body.imageUrl,
-      user: req.userId,
-    });
+    const post = await PostModel.findById(postId);
 
-    res.json({
-      success: true,
-    });
+    if (!post) {
+      return res.status(404).json({
+        message: 'Пост не знайдено',
+      });
+    }
+
+    if (post.user.toString() !== req.userId) {
+      return res.status(403).json({
+        message: 'У вас немає прав для редагування цього поста',
+      });
+    }
+
+    const updatedPost = await PostModel.findByIdAndUpdate(
+      postId,
+      {
+        fullName,
+        contacts,
+        description,
+        photoBase64,
+      },
+      { new: true }
+    );
+
+    res.json(updatedPost);
   } catch (err) {
     console.log(err);
     res.status(500).json({
-      message: 'Не вдалося оновити запис',
+      message: 'Не вдалося оновити пост',
     });
   }
 };
