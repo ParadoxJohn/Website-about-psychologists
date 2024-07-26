@@ -22,7 +22,7 @@ const PsychologistList = () => {
     };
 
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user) {
+    if (user && user._id) {
       setCurrentUserId(user._id);
     }
 
@@ -52,7 +52,7 @@ const PsychologistList = () => {
     }
   };
   
-  const handleUpdate = (updatedPsychologist) => {
+ const handleUpdate = (updatedPsychologist) => {
     setPsychologistsData(prevData =>
       prevData.map(psych =>
         psych._id === updatedPsychologist._id ? updatedPsychologist : psych
@@ -77,4 +77,5 @@ const PsychologistList = () => {
     </div>
   );
 };
+
 export default PsychologistList;
