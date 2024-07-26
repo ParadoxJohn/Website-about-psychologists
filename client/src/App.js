@@ -7,43 +7,40 @@ import Register from './pages/Register.js';
 import Login from './pages/Login.js';
 import PsychologistList from './pages/PsychologistList.js';
 import AddPsychologist from './pages/AddList.js';
+import MyAccount from './pages/MyAccount.js';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
+
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      setToken(storedToken);
-      setIsAuthenticated(true);
-    }
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
   }, []);
 
-  const handleLogin = (userData, token) => {
+  const handleLogin = (token) => {
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setToken(token);
     setIsAuthenticated(true);
   };
 
   return (
     <Router>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="/Login"
           element={<Login onLogin={handleLogin} />}
         />
-        <Route
-          path="/List"
-          element={<PsychologistList />}
-        />
+        <Route path="/List" element={<PsychologistList />} />
         <Route
           path="/AddPsychologist"
           element={isAuthenticated ? <AddPsychologist /> : <Navigate to="/Login" />}
         />
         <Route path="/auth/register" element={<Register />} />
+        <Route
+          path="/my-account"
+          element={isAuthenticated ? <MyAccount /> : <Navigate to="/Login" />}
+        />
       </Routes>
       <Footer />
     </Router>

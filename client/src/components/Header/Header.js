@@ -1,45 +1,62 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './StyleHeader.css';
 import lockImage from './img/lock.png';
 
-class Header extends Component {
-    state = {
-        menuOpen: false
-    }
+const Header = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const navigate = useNavigate();
 
-    toggleMenu = () => {
-        this.setState(prevState => ({
-            menuOpen: !prevState.menuOpen
-        }));
-    }
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsAuthenticated(!!token);
+    }, []);
 
-    render() {
-        return (
-            <div className="header">
-                <div className="logo">
-                    <Link to="/"><span className="highlight">ПОРЯД</span></Link>
-                </div>
-                <div className={`hamburger ${this.state.menuOpen ? 'open' : ''}`} onClick={this.toggleMenu}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div className={`RightNav ${this.state.menuOpen ? 'open' : ''}`}>
-                    <div className="nav">
-                        <Link to="/auth/register">Реєстрація</Link> 
-                    </div>
-                    <div className="navAc link">
-                        <img className='lock' src={lockImage} alt="Lock" />
-                        <Link to="/Login">Вхід</Link>
-                    </div>
-                    <div className="MBut">
-                        <Link to="/List">Вибрати психолога</Link>
-                    </div>
-                </div>  
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setIsAuthenticated(false);
+        alert('Ви вийшли з акаунту');
+        navigate('/');
+    };
+
+    return (
+        <div className="header">
+            <div className="logo">
+                <Link to="/"><span className="highlight">ПОРЯД</span></Link>
             </div>
-        );
-    }
-}
+            <div className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div className={`RightNav ${menuOpen ? 'open' : ''}`}>
+                <div className="nav">
+                    {isAuthenticated ? (
+                        <Link to="/my-account">Мій кабінет</Link>
+                    ) : (
+                        <Link to="/auth/register">Реєстрація</Link>
+                    )}
+                </div>
+                <div className="navAc link">
+                    <img className='lock' src={lockImage} alt="Lock" />
+                    {isAuthenticated ? (
+                        <button onClick={handleLogout}>Вихід</button>
+                    ) : (
+                        <Link to="/Login">Вхід</Link>
+                    )}
+                </div>
+                <div className="MBut">
+                    <Link to="/List">Вибрати психолога</Link>
+                </div>
+            </div>  
+        </div>
+    );
+};
 
 export default Header;

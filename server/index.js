@@ -35,6 +35,7 @@ app.get('/posts/:id', PostController.getOne);
 app.post('/posts', checkAuth, PostController.create);
 app.delete('/posts/:id', checkAuth, PostController.remove);
 app.patch('/posts/:id', checkAuth, PostController.update);
+app.get('/posts/user', checkAuth, PostController.getUserPosts);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
