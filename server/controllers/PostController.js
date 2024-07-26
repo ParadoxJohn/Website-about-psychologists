@@ -126,14 +126,3 @@ export const update = async (req, res) => {
     });
   }
 };
-export const getUserPosts = async (req, res) => {
-  try {
-    const posts = await PostModel.find({ user: req.userId }).populate('user', '-passwordHash');
-    res.json(posts);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      message: 'Не вдалося отримати пости користувача',
-    });
-  }
-};

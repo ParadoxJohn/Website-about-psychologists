@@ -22,7 +22,7 @@ const PsychologistList = () => {
     };
 
     const user = JSON.parse(localStorage.getItem('user'));
-    if (user && user._id) {
+    if (user) {
       setCurrentUserId(user._id);
     }
 
@@ -77,5 +77,4 @@ const PsychologistList = () => {
     </div>
   );
 };
-
 export default PsychologistList;
