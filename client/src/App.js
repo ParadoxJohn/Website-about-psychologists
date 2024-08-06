@@ -19,12 +19,13 @@ function App() {
     }
   }, []);
 
-const handleLogin = (userData, token) => {
-  localStorage.setItem('token', token);
-  localStorage.setItem('user', JSON.stringify(userData));
-  setToken(token);
-  setIsAuthenticated(true);
-};
+  const handleLogin = (userData, token) => {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setToken(token);
+    setIsAuthenticated(true);
+  };
+  
 
   return (
     <Router>

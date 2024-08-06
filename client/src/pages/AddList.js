@@ -35,6 +35,8 @@ const AddPsychologist = () => {
         throw new Error('Токен відсутній');
       }
   
+      console.log('Token:', token);
+  
       const response = await axios.post('/posts', {
         photoBase64: imageBase64,
         name,
