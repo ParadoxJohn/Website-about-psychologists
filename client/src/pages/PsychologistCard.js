@@ -18,7 +18,7 @@ const PsychologistCard = ({ psychologist, currentUserId, onDelete }) => {
       <p>{description}</p>
 
       {isCurrentUserOwner && (
-        <button onClick={handleDeleteClick}>Видалити</button>
+        <button className="ButDelete" onClick={handleDeleteClick}>Видалити</button>
       )}
     </div>
   );

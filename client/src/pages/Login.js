@@ -8,7 +8,6 @@ const Login = ({ onLogin }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -30,9 +29,16 @@ const Login = ({ onLogin }) => {
       }
   
       const data = await response.json();
-      localStorage.setItem('token', data.token); // Зберігаємо токен
-      onLogin(data.token);
-      navigate('/AddPsychologist'); 
+      
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+        console.log('Token saved:', data.token);
+        onLogin(data, data.token); // Змінено тут
+        navigate('/AddPsychologist');
+      } else {
+        console.error('No token received from server');
+        setError('Помилка аутентифікації: токен не отримано');
+      }
     } catch (error) {
       setError('Помилка під час взаємодії із сервером');
       console.error('Login error:', error);

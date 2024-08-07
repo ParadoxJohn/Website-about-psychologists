@@ -30,18 +30,36 @@ const AddPsychologist = () => {
 
   const handleAddPsychologist = async () => {
     try {
+      const token = localStorage.getItem('token');
+      console.log('Token before request:', token); // Додайте це логування
+  
+      if (!token) {
+        alert('Токен відсутній. Будь ласка, увійдіть знову.');
+        navigate('/Login');
+        return;
+      }
+  
       const response = await axios.post('/posts', {
         photoBase64: imageBase64,
         name,
         contacts,
         description,
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
   
       console.log('Psychologist added successfully', response.data);
       navigate('/List');
     } catch (error) {
       console.error('Add psychologist error:', error.response?.data?.message || error.message);
-      alert('Помилка при додаванні психолога: ' + (error.response?.data?.message || error.message));
+      if (error.response && error.response.status === 403) {
+        alert('Немає доступу. Будь ласка, увійдіть знову.');
+        navigate('/Login');
+      } else {
+        alert('Помилка при додаванні психолога: ' + (error.response?.data?.message || error.message));
+      }
     }
   };
   

@@ -24,6 +24,7 @@ function App() {
     localStorage.setItem('user', JSON.stringify(userData));
     setToken(token);
     setIsAuthenticated(true);
+    console.log('Login successful. Token:', token);
   };
   
 
