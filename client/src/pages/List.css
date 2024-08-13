@@ -13,8 +13,8 @@
   max-width: 300px;
   text-align: center;
   transition: transform 0.3s ease-in-out;
-  position: relative; /* Додаємо відносне позиціонування */
-  padding-bottom: 60px; /* Додаємо додатковий відступ знизу, щоб звільнити місце для кнопки */
+  position: relative; 
+  padding-bottom: 60px; 
 
   &:hover {
     transform: scale(1.05);
@@ -45,8 +45,8 @@ h2 {
 }
 
 .ButDelete {
-  position: absolute; /* Абсолютне позиціонування */
-  bottom: 10px; /* Відступ від нижнього краю */
+  position: absolute; 
+  bottom: 10px; 
   left: 50%;
   transform: translateX(-50%);
   background-color: #42B2FC;

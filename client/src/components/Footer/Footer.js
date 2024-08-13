@@ -8,7 +8,7 @@ class Footer extends Component {
                 <h4 className="nameEnd">
                 <span className="highlight">ПОРЯД</span>
                 </h4>
-                <p className="end">© 2023  || Допомога по сайту: ivanivanyk987@gmail.com</p> 
+                <p className="end">© 2024  || Допомога по сайту: ivanivanyk987@gmail.com</p> 
             </footer>
         );
     }
